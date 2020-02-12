@@ -1,5 +1,7 @@
 import React from 'react';
 import { defaultForm } from '../../data';
+import { ErrorMessage } from '..';
+import PropTypes from 'prop-types';
 
 const Form = ({ setInfo }) => {
 
@@ -30,11 +32,13 @@ const Form = ({ setInfo }) => {
         }
 
         setError(false);
+        setInfo(data);
 
     }
 
     return ( 
         <div className="bg-info">
+            { error && <ErrorMessage message="Todos los campos son obligatorios" /> }
             <div className="container">
                 <div className="row">
                     <form
@@ -78,6 +82,10 @@ const Form = ({ setInfo }) => {
             </div>
         </div>
      );
+}
+
+Form.propTypes = {
+    setInfo: PropTypes.func.isRequired,
 }
  
 export default Form;
